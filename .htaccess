@@ -1,0 +1,20 @@
+# отключает экранирование, экранировать будем вручную
+php_flag magic_quotes_gpc off
+
+# кодирование по умолчанию
+AddDefaultCharset utf-8
+
+# сервер ищет файлы только php
+DirectoryIndex index.php
+
+# создание единой точки входа:
+# включить модуль
+RewriteEngine on
+# условие, что если пользователь запросил не файл
+RewriteCond %{REQUEST_FILENAME} !-f
+# тут условие если не папка чтобы в адресной строке
+# не указывался путь к файлу
+# RewriteCond %{REQUEST_FILENAME} !-d
+
+# перенаправить его на index.php
+RewriteRule ^(.*) index.php
